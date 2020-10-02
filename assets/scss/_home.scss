@@ -1,0 +1,61 @@
+.home {
+  &-image {
+    border-radius: 16px;
+    -webkit-mask-image: -webkit-radial-gradient(center, white, black);
+    box-sizing: border-box;
+    object-fit: cover;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50% !important;
+    background-size: cover !important;
+    &:hover {
+      cursor: zoom-in;
+      display: block;
+    }
+  }
+
+  &-card {
+    &-actions {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  &-button {
+    border-radius: 24px;
+    &:focus {
+      box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5);
+      outline: 0;
+    }
+    &-open {
+      cursor: pointer;
+    }
+    &-save {
+      margin: auto;
+      margin-right: 10px;
+      color: white;
+      background-color: $main-color;
+    }
+    &-actions {
+      margin: auto 5px;
+      padding: 0 !important;
+      max-width: 32px !important;
+      min-width: 32px !important;
+      width: 32px !important;
+      max-height: 32px;
+      color: black;
+      background-color: white;
+    }
+    &-text {
+      max-width: 160px !important;
+      min-width: 160px !important;
+      width: 160px !important;
+    }
+  }
+
+  &-width-content {
+    width: 100px;
+    align-items: center;
+    text-align: center;
+  }
+}

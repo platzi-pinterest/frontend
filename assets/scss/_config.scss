@@ -1,13 +1,27 @@
 * {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
-      Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ,
-      Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-  
-  .overflow-hidden {
-    overflow: hidden;
-  }
-  
-  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ,
+    Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+.fit-width-content {
+  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+  width: -moz-fit-content;    /* Firefox/Gecko */
+  width: -webkit-fit-content; /* Chrome */
+  width: fit-content;
+}
+.fit-max-width-content {
+  max-width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+  max-width: -moz-fit-content;    /* Firefox/Gecko */
+  max-width: -webkit-fit-content; /* Chrome */
+  max-width: fit-content;
+}
+
+.main-color-web {
+  color: $main-color;
+}
