@@ -5,7 +5,7 @@
       scroll-target="#scrolling-pinterest"
     >
       <v-toolbar-title class="my-auto">
-        <div class="my-auto fix-navbar-icon" @click="goTo('/')">
+        <div class="my-auto nav-logo fix-navbar-icon" @click="goTo('/')">
           <svg
             height="24"
             width="24"
@@ -18,11 +18,11 @@
         </div>
       </v-toolbar-title>
 
-      <v-btn text class="nav-button mx-1" @click="goTo('/')">
+      <v-btn text class="nav-button nav-button-text mx-1" @click="goTo('/')">
         Home
       </v-btn>
 
-      <v-btn text class="nav-button mx-1">
+      <v-btn text class="nav-button nav-button-text mx-1">
         Following
       </v-btn>
       <v-text-field
@@ -68,13 +68,13 @@
           </v-menu>
         </template>
       </v-text-field>
-      <v-btn icon>
+      <v-btn icon class="nav-button nav-button-icon mx-1">
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-      <v-btn icon>
+      <v-btn icon class="nav-button nav-button-icon mx-1">
         <v-icon>mdi-chat-processing</v-icon>
       </v-btn>
-      <v-btn icon>
+      <v-btn icon class="nav-button nav-button-icon mx-1">
         <v-img
           lazy-src="https://picsum.photos/id/11/10/6"
           max-height="20"
@@ -91,6 +91,7 @@
           <v-btn
             icon
             v-bind="attrs"
+            class="nav-button nav-button-icon mx-1"
             v-on="on"
           >
             <v-icon>mdi-chevron-down</v-icon>
