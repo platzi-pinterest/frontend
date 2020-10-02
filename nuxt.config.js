@@ -45,24 +45,23 @@ export default {
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss/main.scss'],
     theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
+      dark: false
     }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+
+  /**
+   * Env Data
+   */
+  env: {
+    VERSION: process.env.VERSION || 1.0,
+    SHORT_NAME: process.env.SHORT_NAME || 'PS',
+    URL_API: process.env.URL_API || '//localhost:8000/api/',
+    URL_IMG: process.env.URL_IMG || '//localhost:8000'
   }
 }

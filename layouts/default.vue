@@ -1,22 +1,24 @@
 <template>
-  <v-app>
-    <v-main>
-      <nuxt />
-    </v-main>
+  <v-app class="overflow-hidden">
+    <Title />
+    <v-sheet
+      id="scrolling-pinterest"
+      class="overflow-y-auto"
+      max-height="93.5vh"
+    >
+      <v-container style="height: 100vh;">
+        <nuxt />
+      </v-container>
+    </v-sheet>
   </v-app>
 </template>
 
 <script>
+import Title from '~/components/layout/navbar'
+
 export default {
-  mounted () {
-    this.$store.dispatch('generateAccessToken')
-    if (process.browser) {
-      if (typeof localStorage.getItem('authToken') === 'undefined') {
-        this.$cookie.removeAll()
-        this.$store.dispatch('cleanAll')
-      }
-      this.$store.dispatch('generateAccessToken')
-    }
+  components: {
+    Title
   }
 }
 </script>
@@ -25,4 +27,8 @@ export default {
     text-transform: none !important;
     letter-spacing: normal !important;
 }
+</style>
+
+<style lang="scss" scoped>
+
 </style>
