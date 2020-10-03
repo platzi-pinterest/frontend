@@ -74,12 +74,14 @@
       <v-btn icon class="nav-button nav-button-icon mx-1">
         <v-icon>mdi-chat-processing</v-icon>
       </v-btn>
-      <v-btn icon class="nav-button nav-button-icon mx-1">
+      <v-btn icon class="nav-button nav-button-icon mx-1" rounded>
         <v-img
-          lazy-src="https://picsum.photos/id/11/10/6"
+          style="border-radius: 100%"
+          lazy-src="https://librenoticias.com/wp-content/uploads/2020/08/default-user-image.png"
           max-height="20"
           max-width="20"
-          src="https://picsum.photos/id/11/500/300"
+          rounded
+          src="https://librenoticias.com/wp-content/uploads/2020/08/default-user-image.png"
         />
       </v-btn>
 
@@ -99,12 +101,19 @@
         </template>
 
         <v-list>
-          <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
-          >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
+          <v-list-item>
+            <v-list-item-title>
+              <v-btn text @click="goTo('/home/create')">
+                Create
+              </v-btn>
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              <v-btn text @click="logOut">
+                Logout
+              </v-btn>
+            </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -118,6 +127,11 @@ export default {
       if (process.browser && typeof url !== 'undefined' && url) {
         window.location.href = url
       }
+    },
+    logOut () {
+      // this.$cookie.removeAll()
+      this.$store.dispatch('cleanAll')
+      this.goTo('/')
     }
   }
 }

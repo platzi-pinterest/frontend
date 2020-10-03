@@ -11,7 +11,7 @@ import axios from 'axios'
 // Add Config
 const nameHeaders = [
   'X-' + process.env.SHORT_NAME + '-Access-Token',
-  'X-' + process.env.SHORT_NAME + '-Auth-Token'
+  'Authorization'
 ]
 const URL = {
   API: process.env.URL_API
@@ -40,6 +40,7 @@ export const mutations = {
         break
       case 1:
         access = localStorage.getItem('authToken') || getters.getAuthToken(state) || state.authToken
+        access = 'Token ' + access
         break
     }
     // Config Headers
@@ -88,6 +89,48 @@ export const actions = { // Methods
         })
         .catch((e: any) => {
           reject(e)
+        })
+    })
+  },
+  pin ({ commit, getters }: {
+    commit: any, getters: any
+  }, id: string) {
+    return new Promise((resolve, reject) => {
+      // Create formdata
+      commit('setHeader', 1)
+      axios
+        .get(URL.API + 'pin/' + id + '/', getters.getHeaders)
+        .then((response: any) => {
+          resolve(response)
+        })
+        .catch((e: any) => {
+          reject(e)
+        })
+    })
+  },
+  // Update Profile
+  createpin  ({ commit, getters }: {
+    commit: any, getters: any
+  }, form: any) {
+    return new Promise((resolve, reject) => {
+      if (typeof form === 'undefined') { reject(new Error('No data in the form')) }
+      // Make Actions
+      // eslint-disable-next-line no-console
+      const dataSend = new FormData()
+      dataSend.append('title', form.title)
+      dataSend.append('about', form.about)
+      dataSend.append('link', form.link)
+      dataSend.append('board', form.board)
+      // Files
+      commit('setHeader', 1, 'multipart/form-data')
+      dataSend.append('picture', form.file.picture)
+      axios
+        .post(URL.API + 'pin/', dataSend, getters.getHeaders)
+        .then(function (json: any) {
+          resolve(json)
+        })
+        .catch(function (error: any) {
+          reject(error)
         })
     })
   }

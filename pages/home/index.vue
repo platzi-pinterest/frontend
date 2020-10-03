@@ -12,6 +12,7 @@
           max-width="400"
           min-height="450"
           :style="'background: url(' + item.picture + ')'"
+          @click="goTo('home/detail/' + item.id)"
         >
           <v-card-title>
             <v-btn text class="home-button home-button-save hide" @click="goTo('/')">
