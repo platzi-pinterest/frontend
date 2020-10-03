@@ -33,15 +33,18 @@
         Blog
       </v-btn>
       <Login />
+      <SignUp />
     </v-app-bar>
   </div>
 </template>
 <script>
 import Login from '~/components/modal/login'
+import SignUp from '~/components/modal/signup'
 
 export default {
   components: {
-    Login
+    Login,
+    SignUp
   },
   methods: {
     goTo (url, open = false) {

@@ -82,16 +82,8 @@ export const actions = { // Methods
   }, form: any) {
     return new Promise((resolve, reject) => {
       if (typeof form === 'undefined') { reject(new Error('No data in the form')) }
-      // Create formdata
-      // commit('setHeader', 0)
       const request = form
       request.password = sha1(request.password).toString()
-      // const data = {
-      //   ...request,
-      //   platformId: 3,
-      //   pushToken: null,
-      //   version: process.env.VERSION
-      // }
       // Make Actions
       axios
         .post(URL.API + 'users/login/', request)
@@ -101,6 +93,25 @@ export const actions = { // Methods
           if (process.browser) {
             localStorage.setItem('authToken', authToken)
           }
+          resolve(json)
+        })
+        .catch(function (error: any) {
+          reject(error)
+        })
+    })
+  },
+  // signUp
+  signup  ({ commit, getters }: {
+    commit: any, getters: any
+  }, form: any) {
+    return new Promise((resolve, reject) => {
+      if (typeof form === 'undefined') { reject(new Error('No data in the form')) }
+      const request = form
+      request.password = sha1(request.password).toString()
+      // Make Actions
+      axios
+        .post(URL.API + 'users/signup/', request)
+        .then(function (json: any) {
           resolve(json)
         })
         .catch(function (error: any) {

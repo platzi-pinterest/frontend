@@ -14,12 +14,12 @@
           :style="'background: url(' + item.picture + ')'"
         >
           <v-card-title>
-            <v-btn text class="home-button home-button-save" @click="goTo('/')">
+            <v-btn text class="home-button home-button-save hide" @click="goTo('/')">
               Save
             </v-btn>
           </v-card-title>
 
-          <v-card-actions class="home-card-actions">
+          <v-card-actions class="home-card-actions hide">
             <v-list-item class="grow">
               <v-row
                 align="center"
@@ -217,5 +217,12 @@ export default {
 <style lang="scss" scoped>
 .add-complement {
   max-height: 24px;
+}
+.hide {
+  display: none;
+}
+
+.home-image:hover .hide {
+  display: block !important;
 }
 </style>

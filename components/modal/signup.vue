@@ -6,11 +6,11 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          class="home-button home-button-save"
+          class="home-button"
           v-bind="attrs"
           v-on="on"
         >
-          Login
+          SignUp
         </v-btn>
       </template>
       <v-card>
@@ -29,6 +29,9 @@
             </div>
             <p class="mx-auto fit-width-content">
               Welcome to Pinterest
+            </p>
+            <p class="mx-auto fit-width-content">
+              Find new ideas to try
             </p>
           </div>
         </v-card-title>
@@ -83,26 +86,27 @@
                   @click:append="show = !show"
                   @keyup.enter="login()"
                 />
+                <v-text-field
+                  v-model="form.age"
+                  label="Age"
+                  required
+                  outlined
+                  type="text"
+                  :rules="[rules.requiredSingle]"
+                  hide-details
+                />
               </v-col>
             </v-row>
-            <v-row class="my-0 ml-10">
-              <v-btn text elevation="0" class="forget-password" @click="alert = ''; step = 1">
-                ¿Se te olvido tu contraseña?
-              </v-btn>
-            </v-row>
-            <p class="mx-auto mr-12 fit-width-content">
-              *indicates required field
-            </p>
           </v-container>
         </v-card-text>
         <v-card-actions class="my-0">
           <v-btn
-            class="mx-auto mb-5 fit-width-content"
+            class="mx-auto mb-5 fit-width-content home-button home-button-save big-button"
             large
-            color="home-button home-button-save big-button"
-            @click="login()"
+            :disable="typeof success !== 'undefined'"
+            @click="signup()"
           >
-            Log in
+            Continue
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -128,7 +132,8 @@ export default {
       show: false,
       form: {
         email: null,
-        password: null
+        password: null,
+        age: null
       },
       profile: {},
       rules: {
@@ -204,22 +209,18 @@ export default {
       this.alert = ''
       this.step = 0
     },
-    async login () {
+    async signup () {
       const data = this.validationInputs()
       if (!data) {
         return
       }
       await this.$store
-        .dispatch('onboarding/login', this.form)
+        .dispatch('onboarding/signup', this.form)
         .then((response) => {
           this.alert = ''
-          if (response.status === 200) {
-            // Change View
-            window.location.href = '/home'
-            this.closeWindow()
-          } else {
-            this.showAlert(response.data.message)
-          }
+          // Change View
+          this.success = response.data.message
+          this.goTo('/')
         })
         .catch((error) => {
           this.form.password = ''
@@ -266,17 +267,21 @@ export default {
     validationInputs (login = true) {
       // Check Values
       const check = []
-      if (login) {
-        check.push(this.rules.min(this.form.password))
-        check.push(this.rules.requiredCustome(
-          this.form.password,
-          'La Contraseña es requerida'
-        ))
-      }
+      // eslint-disable-next-line no-console
+      console.log(login)
+      check.push(this.rules.min(this.form.password))
+      check.push(this.rules.requiredCustome(
+        this.form.password,
+        'The password is required'
+      ))
+      check.push(this.rules.requiredCustome(
+        this.form.age,
+        'The age is required'
+      ))
       check.push(this.rules.email(this.form.email))
       check.push(this.rules.required(
         this.form.email,
-        'Correo electronico'
+        'Email'
       ))
       return this.checkData(check)
     },
