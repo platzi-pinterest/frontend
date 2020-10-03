@@ -70,7 +70,7 @@
                   hide-details
                 />
               </v-col>
-              <v-col cols="12" class="my-2 py-0">
+              <v-col v-if="!recovery" cols="12" class="my-2 py-0">
                 <v-text-field
                   v-model="form.password"
                   label="Password"
@@ -85,24 +85,31 @@
                 />
               </v-col>
             </v-row>
-            <v-row class="my-0 ml-10">
-              <v-btn text elevation="0" class="forget-password" @click="alert = ''; step = 1">
+            <v-row v-if="!recovery" class="my-0 ml-10">
+              <v-btn text elevation="0" class="forget-password" @click="alert = ''; recovery = !recovery">
                 ¿Se te olvido tu contraseña?
               </v-btn>
             </v-row>
-            <p class="mx-auto mr-12 fit-width-content">
-              *indicates required field
-            </p>
           </v-container>
         </v-card-text>
         <v-card-actions class="my-0">
           <v-btn
+            v-if="!recovery"
             class="mx-auto mb-5 fit-width-content"
             large
             color="home-button home-button-save big-button"
             @click="login()"
           >
             Log in
+          </v-btn>
+          <v-btn
+            v-else
+            class="mx-auto mb-5 fit-width-content"
+            large
+            color="home-button home-button-save big-button"
+            @click="recoveryEmail()"
+          >
+            Recovery
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -113,6 +120,7 @@
 export default {
   data () {
     return {
+      recovery: false,
       showData: false,
       step: 0,
       dialog: false,
@@ -232,7 +240,7 @@ export default {
           this.customButtons(false)
         })
     },
-    async forget () {
+    async recoveryEmail () {
       const data = this.validationInputs(false)
       if (!data) {
         return
@@ -240,13 +248,10 @@ export default {
       await this.$store
         .dispatch('onboarding/forget', this.form)
         .then((response) => {
-          const content = response.data
           this.alert = ''
           if (response.status === 200) {
-            this.showSuccess(content.message)
-            setTimeout(function () {
-              this.goTo('/')
-            }, 2000)
+            this.showSuccess(response.data.message)
+            // this.goTo('/')
             // this.closeWindow()
           } else {
             this.showAlert(response.data.message)

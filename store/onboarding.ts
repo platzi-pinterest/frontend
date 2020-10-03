@@ -127,13 +127,13 @@ export const actions = { // Methods
     return new Promise((resolve, reject) => {
       if (typeof form === 'undefined') { reject(new Error('No data in the form')) }
       // Create formdata
-      commit('setHeader', 0)
+      // commit('setHeader', 0)
       // eslint-disable-next-line no-console
       // const dataSend = new FormData()
       // dataSend.append('email', form.email)
       // Make Actions
       axios
-        .post(URL.API + 'onboarding/recovery-password', { email: form.email }, getters.getHeaders)
+        .post(URL.API + 'users/recovery/', { email: form.email })
         .then(function (json: any) {
           resolve(json)
         })
