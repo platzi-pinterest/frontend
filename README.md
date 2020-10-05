@@ -1,4 +1,5 @@
 # nuxt-pinterest
+![](https://travis-ci.com/platzi-pinterest/frontend.svg?branch=master)
 
 ## Build Setup
 
