@@ -4,7 +4,7 @@
     <section class="fill-height" fluid>
       <h1 class="mx-auto my-10 fit-width-content">Get your next</h1>
       <h2 class="mx-auto my-5 fit-width-content">Special moment</h2>
-      <div class="mt-10 py-10"><v-img src="/images/1.png" cover /></div>
+      <div class="mt-10 py-10"><v-img src="~/images/1.png" cover /></div>
     </section>
   </div>
 </template>
