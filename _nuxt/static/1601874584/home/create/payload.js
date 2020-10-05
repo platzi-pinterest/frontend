@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/home/create", {data:[{}],fetch:[],mutations:[]});

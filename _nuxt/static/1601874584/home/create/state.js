@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1601874584",layout:"default",error:null,state:{accessToken:a,authToken:a,headers:{},home:{accessToken:a,authToken:a,headers:{}},onboarding:{accessToken:a,authToken:a,headers:{}}},serverRendered:true,routePath:"\u002Fhome\u002Fcreate",config:{}}}(""));
